@@ -8,6 +8,33 @@ public class GitInsight
 
     public static void Main(string[] args)
     {
+        //user inputs commandline switch /fm or /am to pick a program
+        if (args[0].Equals("/fm")){
+            commitFrequencyMode();
+        }
+        else if (args[0].Equals("/am")){
+            commitUserFrequencyMode();
+        } else {
+            //if the user didnt write anything or wrote something that wasnt an existing mode:
+            // this will loop if the user continueues to do the same as previous, until the user writes an elegible mode
+            var blocker = true;
+            while(blocker == true){
+            Console.WriteLine("Please chose from this list of modes:");
+            Console.WriteLine("Frequency mode:   /fm");
+            Console.WriteLine("Author mode:      /am");
+            string usermode = Console.ReadLine();
+            if (usermode.Equals("/fm")){
+                commitFrequencyMode();
+                blocker = false;
+            } else if (usermode.Equals("/am")){
+                commitUserFrequencyMode();
+                blocker=false;
+            }
+            }
+
+        }
+    }
+        
         //commitFrequencyMode();
         commitUserFrequencyMode();
     }
@@ -153,4 +180,3 @@ public class GitInsight
     }
 
 
-}
